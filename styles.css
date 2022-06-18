@@ -1,0 +1,72 @@
+.overlay {
+  font-family: "Courier New", "Arial";
+  font-size: 23px;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.4);
+  justify-content: center;
+}
+
+.countdown-container {
+  background: transparent;
+}
+
+#countdown {
+  font-size: 60px;
+  color: white;
+}
+
+#scoreboard {
+  position: absolute;
+  left: 210px;
+  width: 210px;
+  top: 37px;
+  height: 82px;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#startmessage {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.center-screen {
+  /* Center text inside startmessage box */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* Center vertically and horizontally */
+  /* src: https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more */
+  width: 400px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -200px; /* apply negative top and left margins to truly center the element */
+}
+
+#overlay {
+    position: absolute;
+    left: 210px;
+    width: 210px;
+    top: 37px;
+    height: 110px;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 30px;
+    padding-left: 10px;
+}
+
+.canvas-text {
+  color: black;
+}
+
+#main-canvas {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+}
