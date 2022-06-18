@@ -1,19 +1,13 @@
 # Helix
 
-## Group Members
-
-- Matthew Wang (504984273)
-- Nicholas Cerdan (904906315)
-- Alexandria Shen (605018233)
-
 ## Project Introduction
 
-Helix Dropper is an endless dropper game, inspired by the iPhone game Helix Jump. The goal is to guide a bouncing ball down through a series of circular platforms, scoring points for each layer that it drops through. As the ball bounces down to lower layers, the camera will follow it to keep the ball centered. The user attempts to guide the ball through the gaps on each level by rotating the platforms with the `v` and `b` keys.
+Helix Dropper is an endless dropper game, inspired by the iPhone game Helix Jump. The goal is to guide a bouncing ball down through a series of circular platforms, scoring points for each layer that it drops through. As the ball bounces down to lower layers, the camera will follow it to keep the ball centered. The player attempts to guide the ball through the gaps on each level by rotating the platforms with the `v` and `b` keys. To avoid losing a life on an opposite color platform, the player can navigate around it by rotating the platforms, or change the color of the ball with the `c` key.
 
 ### 1. Starting the game
 
 ![Starting screen](assets/startscreen.gif)
-Press `Shift` to start the game. Once you start the game, you will have 3 seconds to get ready before the ball starts falling. Once the ball starts falling, you can interact with the game with the following controls:
+Press `Shift` to start the game. Once the player starts the game, they will have 3 seconds to prepare before the ball starts falling. Once the ball starts falling, they can interact with the game using the following controls:
 
 | Control | Description                        |
 | ------- | ---------------------------------- |
@@ -22,39 +16,24 @@ Press `Shift` to start the game. Once you start the game, you will have 3 second
 | c       | Change color of the ball           |
 | Shift   | Start Game                         |
 
-Each platform you successfully drop through will give you 1 point. The points are tracked in a scoreboard on the upper left corner.
+Each platform they successfully drop through will give 1 point. The points are tracked in a scoreboard on the upper left corner.
 
 ### 2. End game
 
 ![Game Over](assets/gameover.gif)
-The game ends when your ball collides with a platform of a different color. If it collides with a platform of the same color, it will just bounce. Once the game ends, the game will keep track of your high score and you will be able to try again from the beginning if you wish.
-
-Users may also change the color of the ball with the `c` key.
+The game ends when the ball collides with a platform of a different color. If it collides with a platform of the same color, it will instead bounce. Upon game over, the game will remember the score and display the high score of the current play session. At this point, the player can try again if they wish. 
 
 ### 3. Powerups
 
 ![Starting screen](assets/powerup.gif)
-Sometimes during the game, you will see yellow cube powerups that will grant you an extra life. The scoreboard in the upper left corner tells you how many extra lives you have. An example of a powerup is displayed in the gif above.
+Sometimes during the game, a yellow cube will spawn. This powerup grants the player an extra life. The scoreboard in the upper left corner tells the player how many extra lives they have. An example of a powerup is displayed in the gif above.
 
 ## Advanced features
 
 ### 1. Collision Detection
 
-We implemented collision detection to detect when the ball collided with the platforms and the powerups.
-
-To do this, we kept track of both the powerup angles and platform gap angles and checked to see if the ball's current angle collided with the angles of the gaps and/or the powerups. We also kept track of the y-coordinate of the platforms and powerups to know when the ball was at the same height.
+Helix Dropper uses a dynamically sized list to keep track of the y-coordinates of each layer of platforms and the angle of both the powerups and the platforms. For each frame, we check if the y-coordinates and angle of the ball overlap any given powerup or platform. If the ball collides with a powerup, we delete the powerup and increment the lives in the scoreboard by 1. If the ball collides with a platform, we check if the color of the ball matches the color of the platform and either bounce, or lose a life/game over. 
 
 ### 2. Physics Simulation
 
-We also simulated basics physics movement for our ball. We created a constant downward acceleration for the ball to model gravity, and changed the ball's velocity accordingly. We also modeled real world "bouncing" by flipping the ball's velocity in the other direction after hitting a platform.
-
-## How does our game differ from the iOS game?
-
-- Our game has powerups that grant you extra lives
-- You can change the color of the ball as you move
-
-## References
-
-- Scoreboard: https://webglfundamentals.org/webgl/lessons/webgl-text-html.html
-- Tinygraphics: https://github.com/encyclopedia-of-code/tiny-graphics-js
-- Other smaller references (snippets from stack overflow, etc) are cited as comments in our code
+The ball follows a basic physics simulation. It experiences a constant downward acceleration to model gravity, and changes the its velocity accordingly. When it impacts a platform of the same color, we model a "bounce" by flipping the ball's velocity to point upwards, and begin a squish animation via a matrix transformation that models a sinusoidal function. 
